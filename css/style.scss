@@ -1,0 +1,160 @@
+//sass可以写单行注释，css只有多行注释
+$fs:75px; //效果图的十分之一
+//混淆，px换算rem
+@mixin px2rem($property,$px-values,$baseline-px:$fs){ 
+    $baseline-rem: $baseline-px/1rem * 1; 
+    @if type-of($px-values) == "number"{ 
+        #{$property}: $px-values / $baseline-rem; 
+    } @else { 
+        $rem-values:(); 
+        @each $value in $px-values{ 
+            @if $value == 0 or type-of($value) != "number"{ 
+                $rem-values: append($rem-values, $value ); 
+            } 
+            @else{
+                $rem-values:append($rem-values,$value/$baseline-rem);
+            }
+        } 
+        #{$property}: $rem-values; 
+    } 
+}
+//函数, px换算rem
+@function px2rem($val){
+    @return $val/$fs*1rem;
+}
+//变量
+$color:#333333;
+$link:#3d3f4e;
+/*初始化*/
+*{margin: 0; padding: 0;}
+li{list-style: none;}
+a{color: $link;text-decoration: none;}
+html{background-color: #f6f8f7;}
+body{font-family: '微软雅黑';color: $color;font-size: 12px;}
+/*公共*/
+.clearfix:before,.clearfix:after{content: '';display: table;}
+.clearfix:after{clear: both;}
+.layer{max-width:px2rem($fs*10) ;margin: 0 auto;}
+.yellow{position: relative;z-index: 2;
+    &:after{content: '';
+    position: absolute;
+    left: 0; top: 50%;
+    width: 100%;
+    transform: translate(0,-50%); 
+        display: inline-block;
+        height:px2rem(20px);
+        background-color: #fdff04;
+        border-radius:px2rem(10px) ;
+        z-index: -1;
+    }
+}
+/*头部*/
+.header{
+    img{width: 100%;}
+}
+.describe{margin-top:px2rem(75px) ;
+          margin-bottom: px2rem(50px);
+          /*height:px2rem(120px) ;*/
+          @include px2rem(height,120px);
+          background: url(../img/text.jpg) no-repeat;
+          background-size: 100% auto;
+           .text{width: px2rem(580px);
+                 height: px2rem(102px);
+                 line-height: px2rem(34px);
+                 padding:px2rem(7px) 0 0 px2rem(90px) ;
+                 font-size: px2rem(28px);
+                 
+
+           }
+        }
+.circle{display: flex;
+    width:px2rem(694px) ;
+    height: px2rem(121px);
+    border-radius: px2rem(121px/2);
+    border: #3d3f4e px2rem(2px) solid;
+    margin: px2rem(36px) auto 0; 
+
+    .icon{width: px2rem(148px);
+        flex: none;
+        border-right: #3d3f4e px2rem(2px) solid;
+        background-position: px2rem(37px) center;
+        background-repeat: no-repeat;
+
+    }
+    .text{padding-left: px2rem(22px);
+          .title{line-height: px2rem(60px);
+                 margin-top: px2rem(5px);
+                font-size: px2rem(28px);
+            font-weight: bold;}
+          .destred{line-height: px2rem(30px);
+                   font-size: px2rem(24px);
+                color: #666666;}
+        
+        }
+    &.circle1{
+        .icon{background-image: url(../img/花呗分期-bk.1.jpg);
+        background-size: px2rem(89px) px2rem(83px);
+        }
+    }
+    &.circle2{
+        height: px2rem(145px);
+        border-radius: px2rem(145px/2);
+        .icon{background-image: url(../img/花呗分期-bk.2.jpg);
+        background-size: px2rem(89px) px2rem(79px);
+        }
+    }
+    &.circle3{
+        height: px2rem(145px);
+        border-radius: px2rem(145px/2);
+        .icon{background-image: url(../img/花呗分期-bk.3.jpg);
+        background-size: px2rem(92px) px2rem(81px);
+        }
+    }
+
+}
+
+.section{margin-top: px2rem(50px);
+         font-size: px2rem(28px);
+         line-height: px2rem(74px);
+        color:$link ;
+    text-align: center;}
+
+.description{margin: 0  0 0 px2rem(81px);
+            position: relative;
+             padding-left: px2rem(15px);
+            color: #333333;
+            font-size: px2rem(24px);
+        line-height: px2rem(30px);
+        &:before{content: '';
+                 position: absolute;
+                 width: px2rem(4px);
+                 height:px2rem(20px);
+                 left: px2rem(-4px);
+                top: px2rem(7px);
+                background-color: #3bb8c4;
+            }  
+}
+
+.bg{width: 100%;
+    height:px2rem(590px);
+    background: url(../img/花呗分期-bk-6_73.jpg) no-repeat center top;
+    background-size: auto 100%;
+    margin: px2rem(-8px) 0 px2rem(-24px);
+}
+
+.link{display: block;
+      width: px2rem(640px);
+      height: px2rem(120px);
+      margin: px2rem(84px) px2rem(60px) px2rem(65px) px2rem(50px);
+      background: url(../img/花呗分期-bk-7.jpg) no-repeat;
+      background-size: 100% 100%;
+    
+}
+
+.bottom{width: px2rem(750px);
+        height: px2rem(142px);
+        background: url(../img/花呗分期bk-8_98.jpg) no-repeat center top;
+        background-size:auto 100% ;
+
+
+}
